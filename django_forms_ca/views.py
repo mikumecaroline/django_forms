@@ -3,7 +3,7 @@ from django.shortcuts import render
 from . form import UserReg
 
 def Reg(request):
-    submit_button = request.POST.GET("carol")
+    submit_button = request.POST.get("carol")
     name = ''
     email = ''
     password = ''
@@ -14,9 +14,5 @@ def Reg(request):
         email = rForm.cleaned_data.get("email")
         password = rForm.cleaned_data.get("password")
 
-        context = {
-            'rForm': rForm,
-            'name': name,
-            'email': email,
-            'submit_button': submit_button
-        }
+    context = {'rForm': rForm, 'name': name, 'email': email, 'submit_button': submit_button}
+    return render(request, 'register.html', context)
